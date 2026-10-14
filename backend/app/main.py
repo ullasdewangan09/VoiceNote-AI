@@ -24,18 +24,14 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
-# Enable CORS for the local frontend dev servers.
-# Note: a wildcard origin cannot be combined with credentials per the CORS spec,
-# so we list the Vite dev/preview origins explicitly.
+# Enable CORS for frontend and deployment environments
+cors_origins = settings.ALLOWED_ORIGINS
+allow_creds = False if "*" in cors_origins else True
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:4173",
-        "http://127.0.0.1:4173",
-    ],
-    allow_credentials=True,
+    allow_origins=cors_origins,
+    allow_credentials=allow_creds,
     allow_methods=["*"],
     allow_headers=["*"],
 )

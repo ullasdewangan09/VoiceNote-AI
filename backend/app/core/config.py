@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "VoiceNote AI Backend"
     API_V1_STR: str = "/api/v1"
     DEBUG: bool = True
+    ALLOWED_ORIGINS: Union[List[str], str] = Field(
+        default=["*"],
+        description="Allowed CORS origins (comma-separated or list)"
+    )
 
     # ASR Settings
     # Supported models: tiny, base, small, medium, large-v2, large-v3
@@ -41,6 +45,13 @@ class Settings(BaseSettings):
         if isinstance(v, str):
             return [fmt.strip().lower().lstrip(".") for fmt in v.split(",") if fmt.strip()]
         return [fmt.lower().lstrip(".") for fmt in v]
+
+    @field_validator("ALLOWED_ORIGINS", mode="before")
+    @classmethod
+    def parse_allowed_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",") if origin.strip()]
+        return v
 
     @property
     def max_file_size_bytes(self) -> int:

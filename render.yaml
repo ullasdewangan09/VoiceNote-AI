@@ -1,0 +1,30 @@
+services:
+  # Python FastAPI Backend
+  - type: web
+    name: voicenote-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    region: oregon
+    envVars:
+      - key: ASR_MODEL_SIZE
+        value: base
+      - key: DEVICE
+        value: cpu
+      - key: COMPUTE_TYPE
+        value: int8
+      - key: ALLOWED_ORIGINS
+        value: "*"
+
+  # React / Vite Frontend
+  - type: web
+    name: voicenote-ai-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
