@@ -7,8 +7,12 @@ import type {
 } from './types';
 
 // The Vite proxy forwards /api/* → http://localhost:8000/api/*
-// so in production you'd set VITE_API_BASE_URL env var.
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '';
+// In production, VITE_API_BASE_URL is used.
+let rawBase = (import.meta.env.VITE_API_BASE_URL ?? '').trim();
+if (rawBase && !rawBase.startsWith('http://') && !rawBase.startsWith('https://')) {
+  rawBase = `https://${rawBase}`;
+}
+const BASE_URL = rawBase.replace(/\/+$/, '');
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, init);

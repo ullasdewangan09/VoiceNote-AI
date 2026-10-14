@@ -9,7 +9,7 @@ services:
     region: oregon
     envVars:
       - key: ASR_MODEL_SIZE
-        value: base
+        value: tiny
       - key: DEVICE
         value: cpu
       - key: COMPUTE_TYPE
@@ -28,3 +28,9 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: voicenote-ai-backend
+          property: host
