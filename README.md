@@ -1,3 +1,12 @@
+---
+title: VoiceNote AI Backend
+emoji: 🎙️
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+---
+
 # VoiceNote AI — Intelligent ASR-Based Lecture & Meeting Assistant Backend
 
 [![Python Version](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
