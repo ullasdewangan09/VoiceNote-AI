@@ -1,0 +1,124 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.card { overflow: hidden; }
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-secondary);
+}
+
+.cardTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.cardBody {
+  padding: 1rem 1.1rem;
+}
+
+.emptyHint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* Summary */
+.summary {
+  font-size: 0.88rem;
+  line-height: 1.68;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent-violet);
+  padding-left: 0.9rem;
+}
+
+/* Action items */
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.actionCard {
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  transition: border-color var(--transition);
+}
+.actionCard:hover { border-color: var(--text-muted); }
+.done .actionTask { text-decoration: line-through; color: var(--text-tertiary); }
+
+.actionRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 0.4rem;
+}
+
+.checkbox {
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  accent-color: var(--accent-primary);
+}
+
+.actionTask {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.actionTags {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 1.45rem;
+  flex-wrap: wrap;
+}
+
+.confLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+
+/* Keyword cloud */
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.kwTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.kwTag:hover { background: var(--bg-hover); color: var(--text-main); border-color: var(--border-focus); }
+.kwActive { background: var(--bg-hover); color: var(--text-main); border-color: var(--border-focus); }
